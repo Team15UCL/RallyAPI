@@ -14,8 +14,8 @@ public class TrackService
 
     public Track GetOne(string userRole, string userName, string name = "", string date = "", string location = "", string theme = "")
     {
-        var claimsQuery = _tracks.AsQueryable().Where(t => t.RoleClaims!.ToLower().Contains(userRole) ||
-                                                      t.UserClaims!.ToLower().Contains(userName));
+        var claimsQuery = _tracks.AsQueryable().Where(t => t.RoleClaims!.Contains(userRole) ||
+                                                      t.UserClaims!.Contains(userName));
 
         var searchQuery = claimsQuery.Where(t => t.Name == name ||
                                                 t.Date.ToString() == date ||
@@ -35,7 +35,7 @@ public class TrackService
 
     public IEnumerable<Track> GetAll(string userRole, string userName)
     {
-        var query = _tracks.AsQueryable().Where(t => t.RoleClaims!.ToLower().Contains(userRole) || t.UserClaims!.ToLower().Contains(userName));
+        var query = _tracks.AsQueryable().Where(t => t.RoleClaims!.Contains(userRole) || t.UserClaims!.Contains(userName));
 
         return query;
     }
