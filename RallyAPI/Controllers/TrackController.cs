@@ -36,8 +36,8 @@ public class TrackController(TrackService trackService) : ControllerBase
 	[HttpPost(Name = "CreateTrack")]
 	public Track Post(string userName, string userRole, Track track)
 	{
-		track.UserClaims = userName;
-		track.RoleClaims = userRole;
+		track.UserClaims.Add(userName);
+		track.RoleClaims.Add(userRole);
 		track.Date = DateTime.Now;
 
 		return trackService.SaveNewTrack(track);
@@ -46,7 +46,7 @@ public class TrackController(TrackService trackService) : ControllerBase
 	[HttpPut(Name = "UpdateTrack")]
 	public ActionResult Put(string userName, string userRole, Track track)
 	{
-		if (track.UserClaims!.Contains(userName) || track.RoleClaims!.Contains(userRole))
+		if (track.UserClaims.Contains(userName) || track.RoleClaims.Contains(userRole))
 		{
 			var updatedTrack = trackService.UpdateTrack(track);
 			return Ok(updatedTrack);
@@ -57,7 +57,7 @@ public class TrackController(TrackService trackService) : ControllerBase
 	[HttpDelete(Name = "DeleteTrack")]
 	public ActionResult Delete(string userName, string userRole, Track track)
 	{
-		if (track.UserClaims!.Contains(userName) || track.RoleClaims!.Contains(userRole))
+		if (track.UserClaims.Contains(userName) || track.RoleClaims.Contains(userRole))
 		{
 			var result = trackService.DeleteTrack(track);
 

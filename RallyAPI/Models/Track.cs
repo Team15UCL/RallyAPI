@@ -9,7 +9,7 @@ public class Track
 	public string? Theme { get; set; }
 	public string? Location { get; set; }
 	public DateTime Date { get; set; }
-	public string? UserClaims { get; set; }
-	public string? RoleClaims { get; set; }
+	public List<string> UserClaims { get; set; } = [];
+	public List<string> RoleClaims { get; set; } = [];
 	public List<Node>? Nodes { get; set; }
 }

@@ -8,5 +8,4 @@ public class Node
 	public decimal Rotation { get; set; }
 	public string Stroke { get; set; }
 	public string ClassName { get; set; }
-	public int RouteCount { get; set; }
 }
